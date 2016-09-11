@@ -8,6 +8,7 @@ public class ChildDto {
     private Long id;
     private Long version;
     private String name;
+    private ContactDto contact;
 
     public Long getId() {
         return id;
@@ -31,5 +32,13 @@ public class ChildDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ContactDto getContact() {
+        return contact;
+    }
+
+    public void setContact(ContactDto contact) {
+        this.contact = contact;
     }
 }

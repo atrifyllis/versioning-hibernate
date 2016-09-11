@@ -1,6 +1,7 @@
 package gr.alx;
 
 import gr.alx.entity.Child;
+import gr.alx.entity.Contact;
 import gr.alx.entity.Grandparent;
 import gr.alx.entity.Parent;
 import gr.alx.repository.GrandParentRepository;
@@ -29,7 +30,7 @@ class DbInitializer implements CommandLineRunner {
 
         Grandparent grandparent = new Grandparent();
         Parent parent = new Parent();
-        List<Child> children = Arrays.asList(new Child("alex"), new Child("penny"), new Child("other"));
+        List<Child> children = Arrays.asList(new Child("alex", new Contact("c1")), new Child("penny", new Contact("c1")), new Child("other", new Contact("c1")));
         parent.setChildren(children);
         grandparent.setParent(parent);
 

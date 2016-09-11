@@ -1,9 +1,11 @@
 package gr.alx.service;
 
 import gr.alx.dto.ChildDto;
+import gr.alx.dto.ContactDto;
 import gr.alx.dto.GrandparentDto;
 import gr.alx.dto.ParentDto;
 import gr.alx.entity.Child;
+import gr.alx.entity.Contact;
 import gr.alx.entity.Grandparent;
 import gr.alx.entity.Parent;
 import gr.alx.repository.GrandParentRepository;
@@ -67,6 +69,9 @@ public class GrandParentService {
         Child child = optionalChild.orElse(new Child());
         child.setName(childDto.getName());
         child.setVersion(childDto.getVersion());
+
+        child.setContact(new Contact(childDto.getContact().getId()));
+
         return child;
     }
 
@@ -86,6 +91,13 @@ public class GrandParentService {
                     childDto.setId(child.getId());
                     childDto.setName(child.getName());
                     childDto.setVersion(child.getVersion());
+
+                    ContactDto contactDto = new ContactDto();
+                    contactDto.setId(child.getContact().getId());
+                    contactDto.setValue(child.getContact().getValue());
+
+                    childDto.setContact(contactDto);
+
                     return childDto;
                 })
                 .collect(toList());

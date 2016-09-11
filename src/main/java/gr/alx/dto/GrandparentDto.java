@@ -6,6 +6,7 @@ package gr.alx.dto;
 public class GrandparentDto {
 
     private Long id;
+    private Long version;
     private ParentDto parentDto;
 
     public Long getId() {
@@ -14,6 +15,14 @@ public class GrandparentDto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
     public ParentDto getParentDto() {

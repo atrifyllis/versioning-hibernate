@@ -40,16 +40,19 @@ public class GrandParentService {
         if (grandparent == null) {
             grandparent = new Grandparent();
         }
+        grandparent.setVersion(grandparentDto.getVersion());
 
         Parent newParent = grandparent.getParent() != null ? grandparent.getParent() : new Parent();
+        newParent.setVersion(grandparentDto.getParentDto().getVersion());
 
         List<Child> newChildren = new ArrayList<>();
         grandparentDto.getParentDto().getChildren().stream().forEach(childDto -> {
             Child child = mapToChildEntity(childDto, newParent.getChildren());
             newChildren.add(child);
         });
-        newParent.getChildren().clear();
-        newParent.getChildren().addAll(newChildren);
+//        newParent.getChildren().clear();
+//        newParent.getChildren().addAll(newChildren);
+        newParent.setChildren(newChildren);
         grandparent.setParent(newParent);
 
         return grandparent;
@@ -61,6 +64,7 @@ public class GrandParentService {
                 .findFirst();
         Child child = optionalChild.orElse(new Child());
         child.setName(childDto.getName());
+        child.setVersion(childDto.getVersion());
         return child;
     }
 
@@ -68,15 +72,18 @@ public class GrandParentService {
     private GrandparentDto mapToDto(Grandparent updatedGrandparent) {
         GrandparentDto grandparentDto = new GrandparentDto();
         grandparentDto.setId(updatedGrandparent.getId());
+        grandparentDto.setVersion(updatedGrandparent.getVersion());
 
         ParentDto parentDto = new ParentDto();
         parentDto.setId(updatedGrandparent.getParent().getId());
+        parentDto.setVersion(updatedGrandparent.getParent().getVersion());
 
         List<ChildDto> childDtos = updatedGrandparent.getParent().getChildren().stream()
                 .map(child -> {
                     ChildDto childDto = new ChildDto();
                     childDto.setId(child.getId());
                     childDto.setName(child.getName());
+                    childDto.setVersion(child.getVersion());
                     return childDto;
                 })
                 .collect(toList());

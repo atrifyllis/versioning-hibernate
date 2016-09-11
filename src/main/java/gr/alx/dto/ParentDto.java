@@ -8,6 +8,7 @@ import java.util.List;
 public class ParentDto {
 
     private Long id;
+    private Long version;
     private List<ChildDto> children;
 
     public Long getId() {
@@ -16,6 +17,14 @@ public class ParentDto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
     public List<ChildDto> getChildren() {

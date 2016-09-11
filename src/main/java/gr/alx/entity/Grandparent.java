@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Grandparent implements BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @Version

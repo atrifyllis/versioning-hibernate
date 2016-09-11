@@ -1,9 +1,6 @@
 package gr.alx.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.*;
 
 /**
  * Created by alx on 9/11/2016.
@@ -11,7 +8,7 @@ import javax.persistence.Version;
 @Entity
 public class Child implements BaseEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @Version

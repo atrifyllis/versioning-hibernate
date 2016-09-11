@@ -2,3 +2,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+    properties:
+       eclipselink.ddl-generation: create-tables
+       eclipselink.logging.level.sql: FINE

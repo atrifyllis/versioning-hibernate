@@ -50,9 +50,11 @@ public class GrandParentService {
             Child child = mapToChildEntity(childDto, newParent.getChildren());
             newChildren.add(child);
         });
-//        newParent.getChildren().clear();
-//        newParent.getChildren().addAll(newChildren);
-        newParent.setChildren(newChildren);
+        newParent.getChildren().clear();
+        newParent.getChildren().addAll(newChildren);
+        // this does not work with hibernate we get following exception:
+        //A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance
+//        newParent.setChildren(newChildren);
         grandparent.setParent(newParent);
 
         return grandparent;

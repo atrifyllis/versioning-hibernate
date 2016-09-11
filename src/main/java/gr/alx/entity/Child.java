@@ -15,11 +15,20 @@ public class Child implements BaseEntity {
     Long version;
     private String name;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
+
     public Child() {
     }
 
     public Child(String name) {
         this.name = name;
+    }
+
+    public Child(String name, Contact contact) {
+        this.name = name;
+        this.contact = contact;
     }
 
     @Override
@@ -48,5 +57,13 @@ public class Child implements BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 }

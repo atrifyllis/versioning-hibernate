@@ -15,7 +15,7 @@ public class Child implements BaseEntity {
     Long version;
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "contact_id")
     private Contact contact;
 
@@ -29,6 +29,10 @@ public class Child implements BaseEntity {
     public Child(String name, Contact contact) {
         this.name = name;
         this.contact = contact;
+    }
+
+    public Child(Long id) {
+        this.id = id;
     }
 
     @Override
@@ -65,5 +69,21 @@ public class Child implements BaseEntity {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Child child = (Child) o;
+
+        return id != null ? id.equals(child.id) : child.id == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }

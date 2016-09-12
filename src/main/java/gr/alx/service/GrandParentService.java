@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -61,10 +60,16 @@ public class GrandParentService {
     }
 
     private Child mapToChildEntity(ChildDto childDto, List<Child> children) {
-        Optional<Child> optionalChild = children.stream()
-                .filter(child -> child.getId().equals(childDto.getId()))
-                .findFirst();
-        Child child = optionalChild.orElse(new Child());
+        Child child;
+        if (childDto.getId() != null) {
+            child = children.get(children.indexOf(new Child(childDto.getId())));
+        } else {
+            child = new Child();
+        }
+//        Optional<Child> optionalChild = children.stream()
+//                .filter(child -> child.getId().equals(childDto.getId()))
+//                .findFirst();
+//        Child child = optionalChild.orElse(new Child());
         child.setName(childDto.getName());
         child.setVersion(childDto.getVersion());
 
